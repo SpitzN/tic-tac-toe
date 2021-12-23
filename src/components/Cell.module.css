@@ -4,6 +4,7 @@
   align-items: center;
   width: 100px;
   background: #eee;
+  color: var(--color-primary-black);
   border: 1px solid #999;
   float: left;
   font-size: 40px;
