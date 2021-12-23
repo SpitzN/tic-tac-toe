@@ -32,7 +32,17 @@ const Game: React.FC = () => {
   }, 0);
 
   const inputRef = useRef<HTMLInputElement>(null);
+
   const onInputClick = () => {
+    if (inputRef.current === null) {
+      return;
+    }
+    const inputValue = Number(inputRef.current.value);
+    if (inputValue < 3) {
+      alert('Please enter a number greater than 3');
+      return;
+    }
+
     const { value } = inputRef.current!;
     const rows = Number(value);
     setRows(rows);
@@ -63,7 +73,7 @@ const Game: React.FC = () => {
     <div className={classes.game}>
       <h1>Tic Tac Toe</h1>
       {!isBoardReady && (
-        <div className='settings'>
+        <div className={classes.settings}>
           <label htmlFor='board-size'>Choose Number of Rows</label>
           <input name='board-size' ref={inputRef}></input>
           <button onClick={onInputClick}>Submit</button>
