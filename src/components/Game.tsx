@@ -76,7 +76,7 @@ const Game: React.FC = () => {
         <div className={classes.settings}>
           <label htmlFor='board-size'>Choose Number of Rows</label>
           <input name='board-size' ref={inputRef}></input>
-          <button onClick={onInputClick}>Submit</button>
+          <button onClick={onInputClick}>Start</button>
         </div>
       )}
       {isBoardReady && (
