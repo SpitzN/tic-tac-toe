@@ -31,10 +31,6 @@ const Game: React.FC = () => {
     }
   }, 0);
 
-  if (endGame) {
-    // dispatch to end the game and restart
-  }
-
   const inputRef = useRef<HTMLInputElement>(null);
   const onInputClick = () => {
     const { value } = inputRef.current!;

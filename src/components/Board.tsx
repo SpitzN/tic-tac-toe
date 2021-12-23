@@ -15,7 +15,6 @@ const BoardBase = styled.div<{ columns: number; rows: number }>`
 const Board: React.FC<BoardProps> = props => {
   const { rows, columns } = props;
   const board = useMatrixSelector();
-  console.log('board render', board);
 
   return (
     <BoardBase rows={rows} columns={columns}>
