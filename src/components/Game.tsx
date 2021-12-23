@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Board from './Board';
 import classes from './Game.module.css';
 import styled from 'styled-components';
@@ -25,11 +25,20 @@ const Game: React.FC = () => {
   const endGame = useEndGameSelector();
   const player = usePlayerSelector();
 
-  setTimeout(() => {
-    if (winner) {
-      dispatch(declareWinner(true));
-    }
-  }, 0);
+  // setTimeout(() => {
+
+  // }, 0);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (winner) {
+        dispatch(declareWinner(true));
+      }
+    }, 0);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [dispatch, winner]);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
