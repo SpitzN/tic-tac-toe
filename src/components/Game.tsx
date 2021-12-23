@@ -6,6 +6,7 @@ import { setBoard } from '../store/boardSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useWinner } from '../hooks/useWinner';
 import { playerSelector } from '../store/selectors';
+import { declareWinner } from '../store/playerSlice';
 
 const PlayerIfno = styled.div`
   display: flex;
@@ -22,6 +23,12 @@ const Game: React.FC = () => {
   const winner = useWinner();
   const player = useSelector(playerSelector);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  if (winner) {
+    setTimeout(() => {
+      dispatch(declareWinner(true));
+    }, 500);
+  }
 
   const onInputClick = () => {
     const { value } = inputRef.current!;

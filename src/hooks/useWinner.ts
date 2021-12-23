@@ -1,17 +1,16 @@
-import { useEffect } from 'react';
-import { isGameStarted, cellSelector, matrixSelector, playerSelector } from '../store/selectors';
+import { isGameStarted, cellSelector, matrixSelector } from '../store/selectors';
 import { useSelector } from 'react-redux';
 import { CellType, CellProps } from '../types';
 
 // custom hook to calculate the winner of the game
 export const useWinner = () => {
   const matrix = useSelector(matrixSelector);
-  const player = useSelector(playerSelector);
   const isFirstMoveDone = useSelector(isGameStarted);
   const currentCell = useSelector(cellSelector);
   let winner = null;
 
-  const checkRowWin = (board: CellType[][], cell: CellProps, player: CellType) => {
+  // check row win combination
+  const checkRowWin = (board: CellType[][], cell: CellProps) => {
     const { coordinate, value } = cell;
     const { rowNumber } = coordinate;
     let row = board[rowNumber];
@@ -21,7 +20,8 @@ export const useWinner = () => {
     return false;
   };
 
-  const checkColumnWin = (board: CellType[][], cell: CellProps, player: CellType) => {
+  // check column win combination
+  const checkColumnWin = (board: CellType[][], cell: CellProps) => {
     const { coordinate, value } = cell;
     const { colNumber } = coordinate;
 
@@ -33,8 +33,8 @@ export const useWinner = () => {
     return true;
   };
 
-  // check diagonal win
-  const checkDiagonalWin = (board: CellType[][], cell: CellProps, player: CellType) => {
+  // check diagonal win combination
+  const checkDiagonalWin = (board: CellType[][], cell: CellProps) => {
     const { value } = cell;
     let diag = [];
     let oppDiag = [];
@@ -48,27 +48,20 @@ export const useWinner = () => {
     return false;
   };
 
+  // check all win combinations for winner
   if (isFirstMoveDone) {
     if (
-      checkRowWin(matrix, currentCell, player) ||
-      checkColumnWin(matrix, currentCell, player) ||
-      checkDiagonalWin(matrix, currentCell, player)
+      checkRowWin(matrix, currentCell) ||
+      checkColumnWin(matrix, currentCell) ||
+      checkDiagonalWin(matrix, currentCell)
     ) {
       winner = currentCell.value;
     }
   }
 
-  console.log('winner', winner);
-
-  if (winner) {
+  if (!winner) {
     // stop the game if there is a winner
-    // useEffect(() => {
-    //     const dispatch = useDispatch();
-    //     dispatch(setPlayer(null));
-    // }, [winner]);
-    // }
-
-    return winner;
+    return null;
   }
-  return null;
+  return winner;
 };

@@ -16,6 +16,11 @@ export const moveCounterSelector = createSelector(
   (counter: number) => counter
 );
 
+export const isWinnerSelector = createSelector(
+  (state: any) => state.player.winner,
+  (winner: boolean) => winner
+);
+
 export const isGameStarted = createSelector(
   (state: any) => state.player.isFirstMoveDone,
   (isFirstMoveDone: boolean) => isFirstMoveDone

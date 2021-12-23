@@ -1,5 +1,7 @@
 export type CellType = 'X' | 'O' | null;
 
+export type Matrix = CellType[][];
+
 export interface CellProps {
   value: CellType;
   coordinate: {
@@ -13,8 +15,6 @@ export interface BoardProps {
   columns: number;
 }
 
-export type Matrix = CellType[][];
-
 export interface BoardState {
   matrix: Matrix;
   currentCell: CellProps | null;
@@ -24,4 +24,5 @@ export interface PlayerState {
   player: CellType;
   counter: number;
   isFirstMoveDone: boolean;
+  winner: boolean;
 }

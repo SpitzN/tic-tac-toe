@@ -5,6 +5,7 @@ const initialState: PlayerState = {
   player: 'X',
   counter: 0,
   isFirstMoveDone: false,
+  winner: false,
 };
 
 export const playerSlice = createSlice({
@@ -29,8 +30,15 @@ export const playerSlice = createSlice({
         isFirstMoveDone: true,
       };
     },
+    declareWinner: (state, action: PayloadAction<boolean>) => {
+      return {
+        ...state,
+        winner: action.payload,
+      };
+    },
   },
 });
 
-export const { changePlayer, incrementMoveCount, setFirstMoveDone } = playerSlice.actions;
+export const { changePlayer, incrementMoveCount, setFirstMoveDone, declareWinner } =
+  playerSlice.actions;
 export default playerSlice.reducer;
