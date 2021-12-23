@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import Board from './Board';
 import classes from './Game.module.css';
 import styled from 'styled-components';
-import { setBoard } from '../store/actions';
+import { setBoard } from '../store/boardSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useWinner } from '../hooks/useWinner';
 import { playerSelector } from '../store/selectors';
@@ -22,7 +22,7 @@ const Game: React.FC = () => {
   const winner = useWinner();
   const player = useSelector(playerSelector);
   const inputRef = useRef<HTMLInputElement>(null);
-  
+
   const onInputClick = () => {
     const { value } = inputRef.current!;
     const rows = Number(value);

@@ -7,17 +7,17 @@ export const matrixSelector = createSelector(
 );
 
 export const playerSelector = createSelector(
-  (state: any) => state.player,
+  (state: any) => state.player.player,
   (player: CellType) => player
 );
 
 export const moveCounterSelector = createSelector(
-  (state: any) => state.moveCount.counter,
+  (state: any) => state.player.counter,
   (counter: number) => counter
 );
 
 export const isGameStarted = createSelector(
-  (state: any) => state.moveCount.isFirstMoveDone,
+  (state: any) => state.player.isFirstMoveDone,
   (isFirstMoveDone: boolean) => isFirstMoveDone
 );
 

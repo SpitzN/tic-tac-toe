@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { isGameStarted, cellSelector, matrixSelector, playerSelector } from '../store/selectors';
-import { useSelector, useDispatch } from 'react-redux';
-import { setCell, setPlayer, incrementMoveCount } from '../store/actions';
+import { useSelector } from 'react-redux';
 import { CellType, CellProps } from '../types';
 
 // custom hook to calculate the winner of the game
@@ -36,8 +35,7 @@ export const useWinner = () => {
 
   // check diagonal win
   const checkDiagonalWin = (board: CellType[][], cell: CellProps, player: CellType) => {
-    const { coordinate, value } = cell;
-    const { rowNumber, colNumber } = coordinate;
+    const { value } = cell;
     let diag = [];
     let oppDiag = [];
     for (let i = 0; i < board.length; i++) {

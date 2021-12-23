@@ -13,23 +13,15 @@ export interface BoardProps {
   columns: number;
 }
 
+export type Matrix = CellType[][];
+
 export interface BoardState {
-  matrix: CellType[][];
+  matrix: Matrix;
   currentCell: CellProps | null;
 }
 
-export interface SetBoardAction {
-  type: 'SET_BOARD';
-  payload: number;
+export interface PlayerState {
+  player: CellType;
+  counter: number;
+  isFirstMoveDone: boolean;
 }
-
-export interface SetCellAction {
-  type: 'SET_CELL';
-  payload: {
-    rowNumber: number;
-    colNumber: number;
-    newValue: CellType;
-  };
-}
-
-export type BoardAction = SetBoardAction | SetCellAction;
