@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CellType, PlayerState } from '../types';
 
+
 const initialState: PlayerState = {
   player: 'X',
   counter: 0,
   isFirstMoveDone: false,
   winner: false,
+  totalMaxMoves: null,
 };
 
 export const playerSlice = createSlice({
@@ -36,9 +38,32 @@ export const playerSlice = createSlice({
         winner: action.payload,
       };
     },
+    setTotalMaxMoves: (state, action: PayloadAction<number | null>) => {
+      if (action.payload === null) {
+        return {
+          ...state,
+        };
+      }
+      return {
+        ...state,
+        totalMaxMoves: action.payload,
+      };
+    },
+    resetGame: state => {
+      return {
+        ...state,
+        ...initialState,
+      };
+    },
   },
 });
 
-export const { changePlayer, incrementMoveCount, setFirstMoveDone, declareWinner } =
-  playerSlice.actions;
+export const {
+  changePlayer,
+  incrementMoveCount,
+  setFirstMoveDone,
+  declareWinner,
+  setTotalMaxMoves,
+  resetGame,
+} = playerSlice.actions;
 export default playerSlice.reducer;

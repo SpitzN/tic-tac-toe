@@ -25,4 +25,5 @@ export interface PlayerState {
   counter: number;
   isFirstMoveDone: boolean;
   winner: boolean;
+  totalMaxMoves: number | null;
 }

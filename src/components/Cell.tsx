@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { CellProps } from '../types';
 import classes from './Cell.module.css';
 import { useDispatch } from 'react-redux';
@@ -17,11 +17,6 @@ const Cell: React.FC<CellProps> = props => {
   const player = usePlayerSelector();
   const firstMove = useMoveCounterSelector();
   const isWinner = useWinnerSelector();
-  const render = useRef(0);
-
-  // const [isPlayerX, setIsPlayerX] = React.useState(true);
-
-  console.log(`cell render at index ${rowNumber},${colNumber} ${++render.current}`);
 
   const onCellClickHandler = () => {
     if (value !== null || isWinner) return;

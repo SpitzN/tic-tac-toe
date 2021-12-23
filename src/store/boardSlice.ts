@@ -1,6 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, createAction } from '@reduxjs/toolkit';
 import { CellType, BoardState } from '../types';
 
+const resetGame = createAction('resetGame');
 const initialState: BoardState = {
   matrix: [],
   currentCell: null,
@@ -19,7 +20,6 @@ export const boardSlice = createSlice({
           matrix[r].push(null);
         }
       }
-
       return {
         ...state,
         matrix,
@@ -45,6 +45,14 @@ export const boardSlice = createSlice({
         },
       };
     },
+  },
+  extraReducers: builder => {
+    builder.addCase(resetGame, (state, action) => {
+      return {
+        ...state,
+        ...initialState,
+      };
+    });
   },
 });
 

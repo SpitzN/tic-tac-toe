@@ -5,6 +5,7 @@ import {
   isWinnerSelector,
   isGameStarted,
   cellSelector,
+  endGameSelector,
 } from '../store/selectors';
 import { useSelector } from 'react-redux';
 
@@ -36,4 +37,9 @@ export const useWinnerSelector = () => {
 export const useIsGameStartedSelector = () => {
   const isFirstMoveDone = useSelector(isGameStarted);
   return isFirstMoveDone;
+};
+
+export const useEndGameSelector = () => {
+  const isEndGame = useSelector(endGameSelector);
+  return isEndGame;
 };

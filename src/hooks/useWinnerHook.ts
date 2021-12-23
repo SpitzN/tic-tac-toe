@@ -6,9 +6,10 @@ export const useWinner = () => {
   const matrix = useMatrixSelector();
   const isFirstMoveDone = useIsGameStartedSelector();
   const currentCell = useCellSelector();
+
   let winner = null;
 
-  // check row win combination
+  // check row winning combination
   const checkRowWin = (board: Matrix, cell: CellProps) => {
     const { coordinate, value } = cell;
     const { rowNumber } = coordinate;
@@ -19,7 +20,7 @@ export const useWinner = () => {
     return false;
   };
 
-  // check column win combination
+  // check column winning combination
   const checkColumnWin = (board: Matrix, cell: CellProps) => {
     const { coordinate, value } = cell;
     const { colNumber } = coordinate;
@@ -32,7 +33,7 @@ export const useWinner = () => {
     return true;
   };
 
-  // check diagonal win combination
+  // check diagonal winning combination
   const checkDiagonalWin = (board: Matrix, cell: CellProps) => {
     const { value } = cell;
     let diag = [];
@@ -47,7 +48,7 @@ export const useWinner = () => {
     return false;
   };
 
-  // check all win combinations for winner
+  // check all win combinations for winner and return the winner CellType
   if (isFirstMoveDone) {
     if (currentCell) {
       if (
@@ -60,8 +61,8 @@ export const useWinner = () => {
     }
   }
   if (!winner) {
-    // stop the game if there is a winner
     return null;
   }
+
   return winner;
 };

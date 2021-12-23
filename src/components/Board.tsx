@@ -4,8 +4,6 @@ import { BoardProps } from '../types';
 import styled from 'styled-components';
 import { useMatrixSelector } from '../hooks/useSelectorsHook';
 
-// get board from store
-
 const BoardBase = styled.div<{ columns: number; rows: number }>`
   display: grid;
   grid-template-columns: ${props => `repeat(${props.columns}, 1fr)`};
@@ -17,6 +15,7 @@ const BoardBase = styled.div<{ columns: number; rows: number }>`
 const Board: React.FC<BoardProps> = props => {
   const { rows, columns } = props;
   const board = useMatrixSelector();
+  console.log('board render', board);
 
   return (
     <BoardBase rows={rows} columns={columns}>
