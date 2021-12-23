@@ -27,7 +27,7 @@ const Game: React.FC = () => {
   if (winner) {
     setTimeout(() => {
       dispatch(declareWinner(true));
-    }, 500);
+    }, 100);
   }
 
   const onInputClick = () => {

@@ -50,15 +50,16 @@ export const useWinner = () => {
 
   // check all win combinations for winner
   if (isFirstMoveDone) {
-    if (
-      checkRowWin(matrix, currentCell) ||
-      checkColumnWin(matrix, currentCell) ||
-      checkDiagonalWin(matrix, currentCell)
-    ) {
-      winner = currentCell.value;
+    if (currentCell) {
+      if (
+        checkRowWin(matrix, currentCell) ||
+        checkColumnWin(matrix, currentCell) ||
+        checkDiagonalWin(matrix, currentCell)
+      ) {
+        winner = currentCell.value;
+      }
     }
   }
-
   if (!winner) {
     // stop the game if there is a winner
     return null;
