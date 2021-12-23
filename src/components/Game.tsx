@@ -25,9 +25,6 @@ const Game: React.FC = () => {
   const endGame = useEndGameSelector();
   const player = usePlayerSelector();
 
-  // setTimeout(() => {
-
-  // }, 0);
   useEffect(() => {
     const timer = setTimeout(() => {
       if (winner) {
