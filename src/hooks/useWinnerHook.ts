@@ -1,16 +1,15 @@
-import { isGameStarted, cellSelector, matrixSelector } from '../store/selectors';
-import { useSelector } from 'react-redux';
-import { CellType, CellProps } from '../types';
+import { CellProps, Matrix } from '../types';
+import { useMatrixSelector, useCellSelector, useIsGameStartedSelector } from './useSelectorsHook';
 
 // custom hook to calculate the winner of the game
 export const useWinner = () => {
-  const matrix = useSelector(matrixSelector);
-  const isFirstMoveDone = useSelector(isGameStarted);
-  const currentCell = useSelector(cellSelector);
+  const matrix = useMatrixSelector();
+  const isFirstMoveDone = useIsGameStartedSelector();
+  const currentCell = useCellSelector();
   let winner = null;
 
   // check row win combination
-  const checkRowWin = (board: CellType[][], cell: CellProps) => {
+  const checkRowWin = (board: Matrix, cell: CellProps) => {
     const { coordinate, value } = cell;
     const { rowNumber } = coordinate;
     let row = board[rowNumber];
@@ -21,7 +20,7 @@ export const useWinner = () => {
   };
 
   // check column win combination
-  const checkColumnWin = (board: CellType[][], cell: CellProps) => {
+  const checkColumnWin = (board: Matrix, cell: CellProps) => {
     const { coordinate, value } = cell;
     const { colNumber } = coordinate;
 
@@ -34,7 +33,7 @@ export const useWinner = () => {
   };
 
   // check diagonal win combination
-  const checkDiagonalWin = (board: CellType[][], cell: CellProps) => {
+  const checkDiagonalWin = (board: Matrix, cell: CellProps) => {
     const { value } = cell;
     let diag = [];
     let oppDiag = [];

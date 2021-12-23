@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { CellProps } from '../types';
 import classes from './Cell.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { playerSelector, moveCounterSelector, isWinnerSelector } from '../store/selectors';
+import { useDispatch } from 'react-redux';
 import { setCell } from '../store/boardSlice';
 import { changePlayer, incrementMoveCount, setFirstMoveDone } from '../store/playerSlice';
+import {
+  usePlayerSelector,
+  useMoveCounterSelector,
+  useWinnerSelector,
+} from '../hooks/useSelectorsHook';
 
 const Cell: React.FC<CellProps> = props => {
   const { value, coordinate } = props;
   const { rowNumber, colNumber } = coordinate;
   const dispatch = useDispatch();
-  const player = useSelector(playerSelector);
-  const firstMove = useSelector(moveCounterSelector);
-  const isWinner = useSelector(isWinnerSelector);
+  const player = usePlayerSelector();
+  const firstMove = useMoveCounterSelector();
+  const isWinner = useWinnerSelector();
+  const render = useRef(0);
+
+  // const [isPlayerX, setIsPlayerX] = React.useState(true);
+
+  console.log(`cell render at index ${rowNumber},${colNumber} ${++render.current}`);
 
   const onCellClickHandler = () => {
     if (value !== null || isWinner) return;

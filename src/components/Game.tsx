@@ -3,10 +3,10 @@ import Board from './Board';
 import classes from './Game.module.css';
 import styled from 'styled-components';
 import { setBoard } from '../store/boardSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { useWinner } from '../hooks/useWinner';
-import { playerSelector } from '../store/selectors';
+import { useDispatch } from 'react-redux';
+import { useWinner } from '../hooks/useWinnerHook';
 import { declareWinner } from '../store/playerSlice';
+import { usePlayerSelector } from '../hooks/useSelectorsHook';
 
 const PlayerIfno = styled.div`
   display: flex;
@@ -21,7 +21,7 @@ const Game: React.FC = () => {
   const [isBoardReady, setIsBoardReady] = useState(false);
   const dispatch = useDispatch();
   const winner = useWinner();
-  const player = useSelector(playerSelector);
+  const player = usePlayerSelector();
   const inputRef = useRef<HTMLInputElement>(null);
 
   if (winner) {

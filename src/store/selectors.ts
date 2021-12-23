@@ -1,10 +1,10 @@
 import { RootState } from './index';
 import { createSelector } from 'reselect';
-import { CellType } from '../types';
+import { CellType, Matrix } from '../types';
 
 export const matrixSelector = createSelector(
   (state: RootState) => state.board.matrix,
-  (matrix: CellType[][]) => matrix
+  (matrix: Matrix) => matrix
 );
 
 export const playerSelector = createSelector(
@@ -31,3 +31,5 @@ export const cellSelector = createSelector(
   (state: RootState) => state.board.currentCell,
   currentCell => currentCell
 );
+
+
