@@ -9,7 +9,6 @@ const BoardBase = styled.div<{ columns: number; rows: number }>`
   grid-template-columns: ${props => `repeat(${props.columns}, 1fr)`};
   grid-template-row: ${props => `repeat(${props.rows}, 1fr)`};
   grid-gap: 1px;
-  border: 1px solid black;
 `;
 
 const Board: React.FC<BoardProps> = props => {

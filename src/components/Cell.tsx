@@ -33,8 +33,16 @@ const Cell: React.FC<CellProps> = props => {
     }
   };
 
+  // add class to cell if it is the winner
+  // const playerColorclass = player === 'X' ? classes['cell-X'] : classes['cell-O'];
+
+  // {`${styles['form-control']} ${!isValid && styles.invalid}`}
+
   return (
-    <div className={classes.cell} onClick={onCellClickHandler}>
+    <div
+      className={`${classes.cell} ${value === 'X' ? classes['cell-X'] : classes['cell-O']}`}
+      onClick={onCellClickHandler}
+    >
       <div className='cell-inner'>{value}</div>
     </div>
   );

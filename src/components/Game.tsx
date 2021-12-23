@@ -8,12 +8,12 @@ import { useWinner } from '../hooks/useWinnerHook';
 import { declareWinner, setTotalMaxMoves, resetGame } from '../store/playerSlice';
 import { usePlayerSelector, useEndGameSelector } from '../hooks/useSelectorsHook';
 
-const PlayerIfno = styled.div`
+const PlayerInfo = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  margin: 2rem;
+  margin: 0.1rem;
 `;
 
 const Game: React.FC = () => {
@@ -84,7 +84,7 @@ const Game: React.FC = () => {
           <Board rows={rows} columns={rows} />
         </div>
       )}
-      <PlayerIfno>
+      <PlayerInfo>
         {isBoardReady && (
           <>
             <div className={classes.players}>
@@ -96,7 +96,7 @@ const Game: React.FC = () => {
           </>
         )}
         {renderEndGameNoWinner()}
-      </PlayerIfno>
+      </PlayerInfo>
     </div>
   );
 };

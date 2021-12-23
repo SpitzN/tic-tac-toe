@@ -2,27 +2,43 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
-  background: #eee;
+  background: var(--color-secondary-light);
   color: var(--color-primary-black);
-  border: 1px solid #999;
+  border-radius: 0.8rem;
   float: left;
-  font-size: 40px;
+  font-size: 6rem;
   font-weight: bold;
-  line-height: 34px;
-  height: 80px;
-  margin-right: -1px;
-  margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 80px;
+  height: 10rem;
+  width: 10rem;
+  box-shadow: var(--shadow-light);
+  cursor: pointer;
 }
 
 .cell:focus {
   outline: none;
 }
 
+.cell:hover {
+  background: var(--color-secondary-dark);
+}
+
+.cell:active {
+  background: transparent;
+}
+
 .cell-inner {
   height: 100%;
   width: 100%;
+}
+
+.cell-X {
+  color: var(--color-player-x);
+  text-shadow: white 0 0 10px;
+}
+
+.cell-O {
+  color: var(--color-player-o);
+  text-shadow: black 0 0 10px;
 }
